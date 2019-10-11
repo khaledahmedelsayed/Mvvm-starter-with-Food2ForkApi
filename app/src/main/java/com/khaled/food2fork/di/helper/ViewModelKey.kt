@@ -1,10 +1,5 @@
 package com.khaled.food2fork.di.helper
 
-/**
- * Created by Mohammed Hemdan on 4/14/19.
- * Email : mohammed.hemdan.faraj@gmail.com
- * Github : https://github.com/mhemdan
- */
 import androidx.lifecycle.ViewModel
 import dagger.MapKey
 import kotlin.reflect.KClass

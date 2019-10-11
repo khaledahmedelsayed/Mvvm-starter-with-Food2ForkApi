@@ -9,11 +9,6 @@ import dagger.android.HasActivityInjector
 import dagger.android.support.HasSupportFragmentInjector
 import javax.inject.Inject
 
-/**
- * Created by Mohammed Hemdan on 4/14/19.
- * Email : mohammed.hemdan.faraj@gmail.com
- * Github : https://github.com/mhemdan
- */
 class AppInstance : Application(), HasActivityInjector, HasSupportFragmentInjector {
 
     @Inject

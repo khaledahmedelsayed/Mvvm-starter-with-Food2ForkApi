@@ -7,13 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.khaled.food2fork.di.helper.Injectable
 
-/**
- * Created by Mohammed Hemdan on 4/14/19.
- * Email : mohammed.hemdan.faraj@gmail.com
- * Github : https://github.com/mhemdan
- */
 abstract class BaseFragment : Fragment(), Injectable {
-    abstract fun onViewReady(savedInstanceState: Bundle?)
+    abstract fun onViewReady()
     abstract fun getLayoutResourceId(): Int
 
     override fun onCreateView(
@@ -26,7 +21,7 @@ abstract class BaseFragment : Fragment(), Injectable {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        onViewReady(savedInstanceState)
+        onViewReady()
     }
 
 }

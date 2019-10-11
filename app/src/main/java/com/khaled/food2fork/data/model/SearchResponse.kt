@@ -7,5 +7,5 @@ data class SearchResponse(
     @SerializedName("count")
     val count: Int,
     @SerializedName("recipes")
-    val recipes: ArrayList<Recipe>
+    val recipes: ArrayList<Recipe?>
 )

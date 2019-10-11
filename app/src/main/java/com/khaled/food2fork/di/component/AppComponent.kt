@@ -10,11 +10,6 @@ import dagger.Component
 import dagger.android.AndroidInjectionModule
 import javax.inject.Singleton
 
-/**
- * Created by Mohammed Hemdan on 4/14/19.
- * Email : mohammed.hemdan.faraj@gmail.com
- * Github : https://github.com/mhemdan
- */
 @Singleton
 @Component(modules = [AndroidInjectionModule::class, AppModule::class, ActivityModule::class, NetworkModule::class])
 interface AppComponent {

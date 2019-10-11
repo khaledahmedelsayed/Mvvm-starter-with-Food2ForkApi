@@ -12,12 +12,7 @@ import io.reactivex.functions.Consumer
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-/**
- * Created by Mohammed Hemdan on 4/14/19.
- * Email : mohammed.hemdan.faraj@gmail.com
- * Github : https://github.com/mhemdan
- */
-open class BaseViewModel<Repository : BaseRepository> : ViewModel() {
+abstract class BaseViewModel<Repository : BaseRepository> : ViewModel() {
     @Inject
     open lateinit var repository: Repository
 
