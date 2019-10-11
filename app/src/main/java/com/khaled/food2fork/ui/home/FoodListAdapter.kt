@@ -13,7 +13,7 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_recipe.view.*
 
 class FoodListAdapter : RecyclerView.Adapter<FoodListAdapter.ViewHolder>() {
-    private lateinit var recipesList: ArrayList<Recipe?>
+    private var recipesList = ArrayList<Recipe?>()
 
     fun insertList(recipesList: ArrayList<Recipe?>) {
         this.recipesList.addAll(recipesList)
