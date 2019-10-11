@@ -26,7 +26,7 @@ interface AppComponent {
         fun application(application: Application): Builder
 
         @BindsInstance
-        fun baseUrl(url : String) : AppComponent.Builder
+        fun baseUrl(url: String): AppComponent.Builder
 
         fun build(): AppComponent
     }

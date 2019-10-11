@@ -17,9 +17,9 @@ import javax.inject.Inject
  * Email : mohammed.hemdan.faraj@gmail.com
  * Github : https://github.com/mhemdan
  */
-class BaseViewModel<Repository : BaseRepository> : ViewModel()  {
+open class BaseViewModel<Repository : BaseRepository> : ViewModel() {
     @Inject
-    lateinit var repository: Repository
+    open lateinit var repository: Repository
 
     val error = MutableLiveData<ErrorModel>()
     val loading = MutableLiveData<Boolean>()
@@ -30,16 +30,19 @@ class BaseViewModel<Repository : BaseRepository> : ViewModel()  {
         success: Consumer<T>,
         error: Consumer<Throwable>,
         subscribeScheduler: Scheduler = Schedulers.io(),
-        observeOnMainThread: Boolean = true) {
+        observeOnMainThread: Boolean = true
+    ) {
 
         val observerScheduler =
             if (observeOnMainThread) AndroidSchedulers.mainThread()
             else subscribeScheduler
 
-        compositeDisposable.add(observable
-            .subscribeOn(subscribeScheduler)
-            .observeOn(observerScheduler)
-            .subscribe(success, error))
+        compositeDisposable.add(
+            observable
+                .subscribeOn(subscribeScheduler)
+                .observeOn(observerScheduler)
+                .subscribe(success, error)
+        )
     }
 
     fun <T> subscribe(
@@ -48,7 +51,8 @@ class BaseViewModel<Repository : BaseRepository> : ViewModel()  {
         error: Consumer<Throwable> = Consumer { },
         subscribeScheduler: Scheduler = Schedulers.io(),
         observeOnMainThread: Boolean = true,
-        showLoading: Boolean = true) {
+        showLoading: Boolean = true
+    ) {
 
         val observerScheduler =
             if (observeOnMainThread) AndroidSchedulers.mainThread()
@@ -66,7 +70,7 @@ class BaseViewModel<Repository : BaseRepository> : ViewModel()  {
     private fun <T> composeSingle(single: Single<T>, showLoading: Boolean = true): Single<T> {
         return single
             .doOnError {
-//                Timber.e(it)
+                //                Timber.e(it)
 //                getRetrofitError(it)
                 loading.postValue(false)
             }

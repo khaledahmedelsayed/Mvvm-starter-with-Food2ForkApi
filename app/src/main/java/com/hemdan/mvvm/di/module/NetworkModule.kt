@@ -44,7 +44,8 @@ class NetworkModule {
     @Provides
     @Singleton
     fun providesOkHttpClient(
-        httpLoggingInterceptor: HttpLoggingInterceptor, apiKeyInterceptor: Interceptor): OkHttpClient {
+        httpLoggingInterceptor: HttpLoggingInterceptor, apiKeyInterceptor: Interceptor
+    ): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(httpLoggingInterceptor)
             .addInterceptor(apiKeyInterceptor)

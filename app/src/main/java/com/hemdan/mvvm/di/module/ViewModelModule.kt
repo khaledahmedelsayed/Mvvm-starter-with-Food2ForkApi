@@ -18,5 +18,5 @@ abstract class ViewModelModule {
 //    abstract fun bindHomeViewModel(homeViewModel: HomeViewModel): ViewModel
 
     @Binds
-    internal abstract fun bindViewModelFactory(viewModelFactory: ViewModelFactory) : ViewModelProvider.Factory
+    internal abstract fun bindViewModelFactory(viewModelFactory: ViewModelFactory): ViewModelProvider.Factory
 }

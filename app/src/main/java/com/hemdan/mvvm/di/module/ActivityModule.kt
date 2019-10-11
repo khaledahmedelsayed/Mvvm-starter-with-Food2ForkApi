@@ -1,7 +1,7 @@
 package com.hemdan.mvvm.di.module
 
 import com.hemdan.mvvm.di.builder.MainActivityFragmentBuilderModule
-import com.hemdan.mvvm.ui.main.MainActivity
+import com.hemdan.mvvm.ui.MainActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

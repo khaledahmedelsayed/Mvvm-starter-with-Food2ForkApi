@@ -1,13 +1,6 @@
 package com.hemdan.mvvm.data.model
+
 import com.google.gson.annotations.SerializedName
-
-
-data class Food2ForkSearchResponse(
-    @SerializedName("count")
-    val count: Int,
-    @SerializedName("recipes")
-    val recipes: List<Recipe>
-)
 
 data class Recipe(
     @SerializedName("f2f_url")

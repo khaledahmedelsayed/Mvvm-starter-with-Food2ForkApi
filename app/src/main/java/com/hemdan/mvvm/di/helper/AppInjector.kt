@@ -1,4 +1,5 @@
 package com.hemdan.mvvm.di.helper
+
 import android.app.Activity
 import android.app.Application
 import android.os.Bundle
@@ -26,7 +27,8 @@ object AppInjector {
             .build()
 
         appComponent.inject(appInstance)
-        appInstance.registerActivityLifecycleCallbacks(object : Application.ActivityLifecycleCallbacks {
+        appInstance.registerActivityLifecycleCallbacks(object :
+            Application.ActivityLifecycleCallbacks {
             override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
                 handleActivity(activity)
             }
@@ -63,16 +65,17 @@ object AppInjector {
         }
         if (activity is FragmentActivity) {
             activity.supportFragmentManager.registerFragmentLifecycleCallbacks(
-                    object : FragmentManager.FragmentLifecycleCallbacks() {
-                        override fun onFragmentCreated(
-                                fm: FragmentManager,
-                                f: Fragment,
-                                savedInstanceState: Bundle?) {
-                            if (f is Injectable) {
-                                AndroidSupportInjection.inject(f)
-                            }
+                object : FragmentManager.FragmentLifecycleCallbacks() {
+                    override fun onFragmentCreated(
+                        fm: FragmentManager,
+                        f: Fragment,
+                        savedInstanceState: Bundle?
+                    ) {
+                        if (f is Injectable) {
+                            AndroidSupportInjection.inject(f)
                         }
-                    }, true
+                    }
+                }, true
             )
         }
     }

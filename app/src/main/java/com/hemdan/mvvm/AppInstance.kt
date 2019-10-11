@@ -30,7 +30,8 @@ class AppInstance : Application(), HasActivityInjector, HasSupportFragmentInject
 
     override fun activityInjector(): AndroidInjector<Activity> = activityInjector
 
-    override fun supportFragmentInjector(): AndroidInjector<androidx.fragment.app.Fragment> = fragmentInjector
+    override fun supportFragmentInjector(): AndroidInjector<androidx.fragment.app.Fragment> =
+        fragmentInjector
 
 }
 

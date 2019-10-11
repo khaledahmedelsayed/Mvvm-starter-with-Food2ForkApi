@@ -1,4 +1,4 @@
-package com.hemdan.mvvm.ui.main
+package com.hemdan.mvvm.ui
 
 import android.os.Bundle
 import com.hemdan.mvvm.R
