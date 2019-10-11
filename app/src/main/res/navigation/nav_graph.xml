@@ -6,7 +6,7 @@
     android:id="@+id/nav_graph">
     <fragment
         android:id="@+id/foodListFragment"
-        android:name="com.hemdan.mvvm.ui.home.HomeFragment"
+        android:name="com.khaled.food2fork.ui.home.HomeFragment"
         android:label="Food List Fragment"
         tools:layout="@layout/fragment_main"></fragment>
 </navigation>

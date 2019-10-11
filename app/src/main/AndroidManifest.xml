@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.hemdan.mvvm">
+    package="com.khaled.food2fork">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <application
@@ -10,8 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:name=".AppInstance">
-        <activity android:name=".ui.MainActivity">
+        android:name="com.khaled.food2fork.AppInstance">
+        <activity android:name="com.khaled.food2fork.ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
