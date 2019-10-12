@@ -24,8 +24,9 @@ class HomeFragment : BaseFragment() {
 
     private fun setObservers() {
         viewModel.responseList.observe(this, Observer {
-            (this.rvFoodList.adapter as FoodListAdapter).insertList(it)
-            rvFoodList.adapter?.notifyItemRangeChanged(rvFoodList.adapter!!.itemCount, it.size)
+            val foodListAdapter = (rvFoodList.adapter as FoodListAdapter)
+            foodListAdapter.insertList(it)
+            foodListAdapter.notifyItemRangeChanged(foodListAdapter.itemCount, it.size)
         })
     }
 
