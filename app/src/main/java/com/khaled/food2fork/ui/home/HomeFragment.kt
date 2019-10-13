@@ -1,8 +1,10 @@
 package com.khaled.food2fork.ui.home
 
 import androidx.lifecycle.Observer
+import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.khaled.food2fork.R
+import com.khaled.food2fork.data.model.Recipe
 import com.khaled.food2fork.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_main.*
 import javax.inject.Inject
@@ -19,11 +21,10 @@ class HomeFragment : BaseFragment() {
     override fun onViewReady() {
         setRecyclerView()
         setObservers()
-        viewModel.loadFoodList()
     }
 
     private fun setObservers() {
-        viewModel.responseList.observe(this, Observer {
+        viewModel.responseList.observe(this, Observer{
             val foodListAdapter = (rvFoodList.adapter as FoodListAdapter)
             foodListAdapter.insertList(it)
             foodListAdapter.notifyItemRangeChanged(foodListAdapter.itemCount, it.size)

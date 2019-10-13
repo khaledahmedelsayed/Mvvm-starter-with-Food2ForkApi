@@ -5,6 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.paging.PagedList
+import androidx.paging.PagedListAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.khaled.food2fork.R
 import com.khaled.food2fork.data.model.Recipe
@@ -12,11 +15,10 @@ import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_recipe.view.*
 
-class FoodListAdapter : RecyclerView.Adapter<FoodListAdapter.ViewHolder>() {
-    private var recipesList = ArrayList<Recipe?>()
+class FoodListAdapter : PagedListAdapter<Recipe,FoodListAdapter.ViewHolder>(foodDiffCallback) {
 
-    fun insertList(recipesList: ArrayList<Recipe?>) {
-        this.recipesList.addAll(recipesList)
+    fun insertList(recipesList: PagedList<Recipe?>) {
+        this.currentList?.addAll(recipesList)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -25,15 +27,22 @@ class FoodListAdapter : RecyclerView.Adapter<FoodListAdapter.ViewHolder>() {
         return ViewHolder(view)
     }
 
-    override fun getItemCount(): Int {
-        return recipesList.size
-    }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val recipe: Recipe? = recipesList[position]
+        val recipe: Recipe? = getItem(position)
         holder.bind(recipe)
     }
+    companion object {
+        private val foodDiffCallback = object : DiffUtil.ItemCallback<Recipe>() {
+            override fun areItemsTheSame(oldItem: Recipe, newItem: Recipe): Boolean {
+                return oldItem.recipeId == newItem.recipeId
+            }
 
+            override fun areContentsTheSame(oldItem: Recipe, newItem: Recipe): Boolean {
+                return oldItem == newItem
+            }
+        }
+    }
     inner class ViewHolder(mView: View) : RecyclerView.ViewHolder(mView) {
         private val mImageView = mView.ivImage
         private val mTextView = mView.tvTitle
