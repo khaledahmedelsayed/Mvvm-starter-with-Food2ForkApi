@@ -8,4 +8,5 @@ class HomeRepository @Inject constructor() : BaseRepository() {
     @Inject
     lateinit var apiService: Food2ForkApi
 
+    fun getRecipesResult(page: Int) = apiService.getFoodList(page)
 }
