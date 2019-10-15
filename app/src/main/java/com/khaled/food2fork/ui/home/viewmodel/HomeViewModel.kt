@@ -1,4 +1,4 @@
-package com.khaled.food2fork.ui.home
+package com.khaled.food2fork.ui.home.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -6,6 +6,7 @@ import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.khaled.food2fork.data.model.Recipe
 import com.khaled.food2fork.ui.base.BaseViewModel
+import com.khaled.food2fork.ui.home.repository.HomeRepository
 import javax.inject.Inject
 
 class HomeViewModel @Inject constructor() : BaseViewModel<HomeRepository>() {
@@ -14,12 +15,10 @@ class HomeViewModel @Inject constructor() : BaseViewModel<HomeRepository>() {
     override lateinit var repository: HomeRepository
 
     var responseList: LiveData<PagedList<Recipe>> = MutableLiveData()
-    private val foodDataSourceFactory: FoodDataSourceFactory
-init {
-     foodDataSourceFactory = FoodDataSourceFactory(this) //Must be initialized before setting recyclerView adapter
 
-}
-    fun getFoodRecipes() {
+    fun buildResponseList() {
+        val foodDataSourceFactory =
+            FoodDataSourceFactory(this)
 
         val config = PagedList.Config.Builder()
             .setInitialLoadSizeHint(30)
@@ -28,8 +27,5 @@ init {
             .build()
 
         responseList = LivePagedListBuilder(foodDataSourceFactory, config).build()
-
     }
-
-
 }

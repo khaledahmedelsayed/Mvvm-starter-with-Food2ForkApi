@@ -1,4 +1,4 @@
-package com.khaled.food2fork.ui.home
+package com.khaled.food2fork.ui.home.viewmodel
 
 import androidx.paging.PageKeyedDataSource
 import com.khaled.food2fork.data.model.Recipe
@@ -11,8 +11,7 @@ class FoodDataSource(private val viewModel: HomeViewModel) :
         callback: LoadInitialCallback<Int, Recipe>
     ) {
 
-        viewModel.subscribe(viewModel.repository.getRecipesResult(1), Consumer {
-                response ->
+        viewModel.subscribe(viewModel.repository.getRecipesResult(1), Consumer { response ->
             callback.onResult(
                 response.recipes,
                 null,
@@ -22,12 +21,14 @@ class FoodDataSource(private val viewModel: HomeViewModel) :
     }
 
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Recipe>) {
-        viewModel.subscribe(viewModel.repository.getRecipesResult(params.key), Consumer { response ->
-            callback.onResult(
-                response.recipes,
-                params.key+1
-            )
-        })
+        viewModel.subscribe(
+            viewModel.repository.getRecipesResult(params.key),
+            Consumer { response ->
+                callback.onResult(
+                    response.recipes,
+                    params.key + 1
+                )
+            })
     }
 
     override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, Recipe>) {

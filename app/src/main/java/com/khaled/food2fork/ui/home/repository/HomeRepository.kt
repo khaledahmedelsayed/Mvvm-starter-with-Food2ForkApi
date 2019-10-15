@@ -1,4 +1,4 @@
-package com.khaled.food2fork.ui.home
+package com.khaled.food2fork.ui.home.repository
 
 import com.khaled.food2fork.data.api.Food2ForkApi
 import com.khaled.food2fork.ui.base.BaseRepository

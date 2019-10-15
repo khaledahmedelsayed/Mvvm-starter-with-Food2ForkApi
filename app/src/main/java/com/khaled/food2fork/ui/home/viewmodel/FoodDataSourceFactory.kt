@@ -1,4 +1,4 @@
-package com.khaled.food2fork.ui.home
+package com.khaled.food2fork.ui.home.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource

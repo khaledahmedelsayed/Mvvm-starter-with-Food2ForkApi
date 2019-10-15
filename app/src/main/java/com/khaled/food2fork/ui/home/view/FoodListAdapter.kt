@@ -1,4 +1,4 @@
-package com.khaled.food2fork.ui.home
+package com.khaled.food2fork.ui.home.view
 
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +12,9 @@ import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_recipe.view.*
 
-class FoodListAdapter : PagedListAdapter<Recipe, FoodListAdapter.ViewHolder>(foodDiffCallback) {
+class FoodListAdapter : PagedListAdapter<Recipe, FoodListAdapter.ViewHolder>(
+    foodDiffCallback
+) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -43,7 +45,7 @@ class FoodListAdapter : PagedListAdapter<Recipe, FoodListAdapter.ViewHolder>(foo
         fun bind(recipe: Recipe?) {
             mTextView.text = recipe?.title
             Picasso.get()
-                .load(recipe?.imageUrl?.replace("http","https"))
+                .load(recipe?.imageUrl?.replace("http", "https"))
                 .fit()
                 .into(mImageView, object : Callback {
                     override fun onSuccess() {
