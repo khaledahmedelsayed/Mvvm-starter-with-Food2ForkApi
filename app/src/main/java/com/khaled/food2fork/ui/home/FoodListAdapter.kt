@@ -14,7 +14,6 @@ import kotlinx.android.synthetic.main.item_recipe.view.*
 
 class FoodListAdapter : PagedListAdapter<Recipe, FoodListAdapter.ViewHolder>(foodDiffCallback) {
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_recipe, parent, false)
@@ -29,7 +28,7 @@ class FoodListAdapter : PagedListAdapter<Recipe, FoodListAdapter.ViewHolder>(foo
     companion object {
         private val foodDiffCallback = object : DiffUtil.ItemCallback<Recipe>() {
             override fun areItemsTheSame(oldItem: Recipe, newItem: Recipe): Boolean {
-                return oldItem.recipeId == newItem.recipeId
+                return oldItem.title == newItem.title
             }
 
             override fun areContentsTheSame(oldItem: Recipe, newItem: Recipe): Boolean {
@@ -44,8 +43,8 @@ class FoodListAdapter : PagedListAdapter<Recipe, FoodListAdapter.ViewHolder>(foo
         fun bind(recipe: Recipe?) {
             mTextView.text = recipe?.title
             Picasso.get()
-                .load(recipe?.imageUrl)
-                .resize(250, 250)
+                .load(recipe?.imageUrl?.replace("http","https"))
+                .fit()
                 .into(mImageView, object : Callback {
                     override fun onSuccess() {
                     }

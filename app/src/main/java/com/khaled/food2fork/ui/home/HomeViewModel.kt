@@ -10,10 +10,16 @@ import javax.inject.Inject
 
 class HomeViewModel @Inject constructor() : BaseViewModel<HomeRepository>() {
 
-    var responseList: LiveData<PagedList<Recipe>> = MutableLiveData()
+    @Inject
+    override lateinit var repository: HomeRepository
 
+    var responseList: LiveData<PagedList<Recipe>> = MutableLiveData()
+    private val foodDataSourceFactory: FoodDataSourceFactory
+init {
+     foodDataSourceFactory = FoodDataSourceFactory(this) //Must be initialized before setting recyclerView adapter
+
+}
     fun getFoodRecipes() {
-        val itemDataSourceFactory = DataSourceFactory(repository,this)
 
         val config = PagedList.Config.Builder()
             .setInitialLoadSizeHint(30)
@@ -21,7 +27,7 @@ class HomeViewModel @Inject constructor() : BaseViewModel<HomeRepository>() {
             .setPageSize(30)
             .build()
 
-        responseList = LivePagedListBuilder<Int, Recipe>(itemDataSourceFactory, config).build()
+        responseList = LivePagedListBuilder(foodDataSourceFactory, config).build()
 
     }
 

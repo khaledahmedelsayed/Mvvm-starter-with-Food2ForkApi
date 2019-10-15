@@ -17,14 +17,15 @@ class HomeFragment : BaseFragment() {
     }
 
     override fun onViewReady() {
+        viewModel.getFoodRecipes()
         setRecyclerView()
         setObservers()
         viewModel.getFoodRecipes()
     }
 
     private fun setObservers() {
-        viewModel.responseList.observe(this, Observer { page ->
-            (this.rvFoodList.adapter as FoodListAdapter).submitList(page)
+        viewModel.responseList.observe(this, Observer {
+            (this.rvFoodList.adapter as FoodListAdapter).submitList(it)
         })
     }
 
