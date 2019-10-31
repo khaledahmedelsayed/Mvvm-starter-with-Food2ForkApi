@@ -17,8 +17,8 @@ class HomeViewModel : BaseViewModel<HomeRepository>(), KoinComponent {
 
     var responseList: MutableLiveData<ArrayList<Recipe?>> = MutableLiveData()
 
-    fun loadFoodList() {
-        subscribe(repository.getRecipesResult(1), Consumer {
+    fun loadFoodList(page : Int) {
+        subscribe(repository.getRecipesResult(page), Consumer {
             responseList.value = it.recipes
         })
     }

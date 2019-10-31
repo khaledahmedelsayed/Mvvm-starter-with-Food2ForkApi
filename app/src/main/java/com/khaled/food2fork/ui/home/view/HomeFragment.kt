@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.khaled.food2fork.R
 import com.khaled.food2fork.ui.base.BaseFragment
 import com.khaled.food2fork.ui.home.viewmodel.HomeViewModel
+import com.khaled.newsmvi.util.EndlessRecyclerViewScrollListener
 import kotlinx.android.synthetic.main.fragment_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -19,7 +20,7 @@ class HomeFragment : BaseFragment() {
     override fun onViewReady() {
         setRecyclerView()
         setObservers()
-        viewModel.loadFoodList()
+        viewModel.loadFoodList(1)
     }
 
     private fun setObservers() {
@@ -32,8 +33,15 @@ class HomeFragment : BaseFragment() {
     private fun setRecyclerView() {
         val mRecyclerView = this.rvFoodList
         mRecyclerView.apply {
-            layoutManager = LinearLayoutManager(this@HomeFragment.context)
+            val layoutManager = LinearLayoutManager(this@HomeFragment.context)
+            this.layoutManager = layoutManager
             adapter = FoodListAdapter()
+            val scrollListener = object : EndlessRecyclerViewScrollListener(layoutManager) {
+                override fun onLoadMore(page: Int, totalItemsCount: Int) {
+                    viewModel.loadFoodList(page)
+                }
+            }
+            addOnScrollListener(scrollListener)
         }
     }
 }
