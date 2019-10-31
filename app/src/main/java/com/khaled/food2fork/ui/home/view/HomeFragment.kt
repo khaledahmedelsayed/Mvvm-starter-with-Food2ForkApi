@@ -6,12 +6,11 @@ import com.khaled.food2fork.R
 import com.khaled.food2fork.ui.base.BaseFragment
 import com.khaled.food2fork.ui.home.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.fragment_main.*
-import javax.inject.Inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : BaseFragment() {
 
-    @Inject
-    lateinit var viewModel: HomeViewModel
+    override val viewModel by viewModel(HomeViewModel::class)
 
     override fun getLayoutResourceId(): Int {
         return R.layout.fragment_main

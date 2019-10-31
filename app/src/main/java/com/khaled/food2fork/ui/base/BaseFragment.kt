@@ -5,9 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.khaled.food2fork.di.helper.Injectable
 
-abstract class BaseFragment : Fragment(), Injectable {
+abstract class BaseFragment : Fragment() {
+
+    abstract val viewModel: BaseViewModel<*>
+
     abstract fun onViewReady()
     abstract fun getLayoutResourceId(): Int
 

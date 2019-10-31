@@ -9,7 +9,7 @@ apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.hemdan.mvvm"
+        applicationId "com.khaled.food2fork"
         minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
@@ -47,32 +47,28 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:2.1.0"
     implementation "androidx.paging:paging-runtime:2.1.0"
 
-//Picasso
+    //Koin
+    implementation "org.koin:koin-core:2.0.1"
+    implementation "org.koin:koin-core-ext:2.0.1"
+    implementation "org.koin:koin-androidx-scope:2.0.1"
+    implementation "org.koin:koin-androidx-viewmodel:2.0.1"
+    implementation "org.koin:koin-androidx-ext:2.0.1"
+
+    //Picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
 
-
-//    dagger
-    implementation rootProject.ext.libraries.dagger
-    implementation rootProject.ext.libraries.daggerAndroid
-    implementation rootProject.ext.libraries.daggerAndroidSupport
-    kapt rootProject.ext.apt.daggerCompiler
-    kapt rootProject.ext.apt.daggerProcessor
-
-// retrofit
+    // retrofit
     implementation rootProject.ext.libraries.retrofit
     implementation rootProject.ext.libraries.retrofitGsonConverter
     implementation rootProject.ext.libraries.retrofitLoggingInterceptor
     implementation rootProject.ext.libraries.gson
     implementation rootProject.ext.libraries.okhttp
     implementation rootProject.ext.libraries.retrofitAdapter
-
     implementation rootProject.ext.libraries.rxjava
     implementation rootProject.ext.libraries.rxandroid
 
-
-//    anko
+    //anko
     implementation rootProject.ext.libraries.anko
     implementation 'androidx.paging:paging-runtime-ktx:2.1.0'
-
 
 }

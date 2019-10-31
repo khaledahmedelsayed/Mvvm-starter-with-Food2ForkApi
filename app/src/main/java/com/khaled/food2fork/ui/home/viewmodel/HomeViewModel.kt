@@ -7,18 +7,17 @@ import androidx.paging.PagedList
 import com.khaled.food2fork.data.model.Recipe
 import com.khaled.food2fork.ui.base.BaseViewModel
 import com.khaled.food2fork.ui.home.repository.HomeRepository
-import javax.inject.Inject
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 
-class HomeViewModel @Inject constructor() : BaseViewModel<HomeRepository>() {
+class HomeViewModel : BaseViewModel<HomeRepository>(), KoinComponent {
 
-    @Inject
-    override lateinit var repository: HomeRepository
+    override val repository by inject<HomeRepository>()
 
     var responseList: LiveData<PagedList<Recipe>> = MutableLiveData()
 
     fun buildResponseList() {
-        val foodDataSourceFactory =
-            FoodDataSourceFactory(this)
+        val foodDataSourceFactory = FoodDataSourceFactory()
 
         val config = PagedList.Config.Builder()
             .setInitialLoadSizeHint(30)

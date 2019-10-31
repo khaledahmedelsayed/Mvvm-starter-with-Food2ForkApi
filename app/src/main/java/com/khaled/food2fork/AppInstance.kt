@@ -1,33 +1,18 @@
 package com.khaled.food2fork
 
-import android.app.Activity
 import android.app.Application
-import com.khaled.food2fork.di.helper.AppInjector
-import dagger.android.AndroidInjector
-import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasActivityInjector
-import dagger.android.support.HasSupportFragmentInjector
-import javax.inject.Inject
+import com.khaled.food2fork.di.module.Modules
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.startKoin
 
-class AppInstance : Application(), HasActivityInjector, HasSupportFragmentInjector {
-
-    @Inject
-    lateinit var activityInjector: DispatchingAndroidInjector<Activity>
-
-    @Inject
-    lateinit var fragmentInjector: DispatchingAndroidInjector<androidx.fragment.app.Fragment>
+class AppInstance : Application() {
 
     override fun onCreate() {
         super.onCreate()
-
-        AppInjector.init(this)
+        startKoin {
+            androidContext(this@AppInstance)
+            modules(Modules.appComponent)
+        }
     }
 
-    override fun activityInjector(): AndroidInjector<Activity> = activityInjector
-
-    override fun supportFragmentInjector(): AndroidInjector<androidx.fragment.app.Fragment> =
-        fragmentInjector
-
 }
-
-//ref check this https://github.com/matteopasotti/ComicsCatalog/tree/master/app/src/main/java/com/pasotti/matteo/wikiheroes/room

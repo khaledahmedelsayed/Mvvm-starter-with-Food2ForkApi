@@ -10,11 +10,10 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.Consumer
 import io.reactivex.schedulers.Schedulers
-import javax.inject.Inject
 
 abstract class BaseViewModel<Repository : BaseRepository> : ViewModel() {
-    @Inject
-    open lateinit var repository: Repository
+
+    abstract val repository: Repository
 
     val error = MutableLiveData<ErrorModel>()
     val loading = MutableLiveData<Boolean>()
