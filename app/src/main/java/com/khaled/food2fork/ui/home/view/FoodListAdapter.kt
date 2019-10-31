@@ -12,9 +12,12 @@ import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_recipe.view.*
 
-class FoodListAdapter : PagedListAdapter<Recipe, FoodListAdapter.ViewHolder>(
-    foodDiffCallback
-) {
+class FoodListAdapter : RecyclerView.Adapter<FoodListAdapter.ViewHolder>() {
+    private var recipesList = ArrayList<Recipe?>()
+
+    fun insertList(recipesList: ArrayList<Recipe?>) {
+        this.recipesList.addAll(recipesList)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -22,21 +25,13 @@ class FoodListAdapter : PagedListAdapter<Recipe, FoodListAdapter.ViewHolder>(
         return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val recipe: Recipe? = getItem(position)
-        holder.bind(recipe)
+    override fun getItemCount(): Int {
+        return recipesList.size
     }
 
-    companion object {
-        private val foodDiffCallback = object : DiffUtil.ItemCallback<Recipe>() {
-            override fun areItemsTheSame(oldItem: Recipe, newItem: Recipe): Boolean {
-                return oldItem.title == newItem.title
-            }
-
-            override fun areContentsTheSame(oldItem: Recipe, newItem: Recipe): Boolean {
-                return oldItem == newItem
-            }
-        }
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val recipe: Recipe? = recipesList[position]
+        holder.bind(recipe)
     }
 
     inner class ViewHolder(mView: View) : RecyclerView.ViewHolder(mView) {
@@ -46,7 +41,7 @@ class FoodListAdapter : PagedListAdapter<Recipe, FoodListAdapter.ViewHolder>(
             mTextView.text = recipe?.title
             Picasso.get()
                 .load(recipe?.imageUrl?.replace("http", "https"))
-                .fit()
+                .resize(250, 250)
                 .into(mImageView, object : Callback {
                     override fun onSuccess() {
                     }

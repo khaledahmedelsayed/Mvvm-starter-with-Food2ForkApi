@@ -18,17 +18,17 @@ class HomeFragment : BaseFragment() {
 
     override fun onViewReady() {
         setRecyclerView()
-        viewModel.buildResponseList() //For some reason responseList must be built before observing on it ,
-        // otherwise create() in FoodDataSourceFactory won't be called
         setObservers()
+        viewModel.loadFoodList()
     }
 
     private fun setObservers() {
         viewModel.responseList.observe(this, Observer {
-            (this.rvFoodList.adapter as FoodListAdapter).submitList(it)
+            val foodListAdapter = (rvFoodList.adapter as FoodListAdapter)
+            foodListAdapter.insertList(it)
+            foodListAdapter.notifyItemRangeChanged(foodListAdapter.itemCount, it.size)
         })
     }
-
     private fun setRecyclerView() {
         val mRecyclerView = this.rvFoodList
         mRecyclerView.apply {
