@@ -3,8 +3,6 @@ package com.khaled.food2fork.ui.home.view
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.paging.PagedListAdapter
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.khaled.food2fork.R
 import com.khaled.food2fork.data.model.Recipe

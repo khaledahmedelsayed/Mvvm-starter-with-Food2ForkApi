@@ -9,5 +9,5 @@ class HomeRepository : BaseRepository(), KoinComponent {
 
     override val apiService: Food2ForkApi by inject()
 
-   suspend fun getRecipesResult(page: Int) = apiService.getFoodList(page)
+    suspend fun getRecipesResult(page: Int) = apiService.getFoodList(page)
 }

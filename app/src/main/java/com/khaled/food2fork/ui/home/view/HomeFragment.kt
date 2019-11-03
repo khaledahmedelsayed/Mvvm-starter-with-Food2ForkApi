@@ -29,6 +29,7 @@ class HomeFragment : BaseFragment() {
             foodListAdapter.insertList(it)
         })
     }
+
     private fun setRecyclerView() {
         val mRecyclerView = this.rvFoodList
         mRecyclerView.apply {

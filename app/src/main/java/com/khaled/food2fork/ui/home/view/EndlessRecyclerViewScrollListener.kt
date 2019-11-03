@@ -55,15 +55,18 @@ abstract class EndlessRecyclerViewScrollListener : RecyclerView.OnScrollListener
 
         when (mLayoutManager) {
             is StaggeredGridLayoutManager -> {
-                val lastVisibleItemPositions = (mLayoutManager as StaggeredGridLayoutManager).findLastVisibleItemPositions(null)
+                val lastVisibleItemPositions =
+                    (mLayoutManager as StaggeredGridLayoutManager).findLastVisibleItemPositions(null)
                 // get maximum element within the list
                 lastVisibleItemPosition = getLastVisibleItem(lastVisibleItemPositions)
             }
-            is LinearLayoutManager -> lastVisibleItemPosition = (mLayoutManager as LinearLayoutManager).findLastVisibleItemPosition()
-            is GridLayoutManager -> lastVisibleItemPosition = (mLayoutManager as GridLayoutManager).findLastVisibleItemPosition()
+            is LinearLayoutManager -> lastVisibleItemPosition =
+                (mLayoutManager as LinearLayoutManager).findLastVisibleItemPosition()
+            is GridLayoutManager -> lastVisibleItemPosition =
+                (mLayoutManager as GridLayoutManager).findLastVisibleItemPosition()
         }
 
-            // If the total item count is zero and the previous isn't, assume the
+        // If the total item count is zero and the previous isn't, assume the
         // list is invalidated and should be reset back to initial state
         // If it’s still loading, we check to see if the dataset count has
         // changed, if so we conclude it has finished loading and update the current page

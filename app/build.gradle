@@ -63,7 +63,6 @@ dependencies {
     implementation rootProject.ext.libraries.retrofitLoggingInterceptor
     implementation rootProject.ext.libraries.gson
     implementation rootProject.ext.libraries.okhttp
-    implementation rootProject.ext.libraries.retrofitAdapter
 
     //anko
     implementation rootProject.ext.libraries.anko

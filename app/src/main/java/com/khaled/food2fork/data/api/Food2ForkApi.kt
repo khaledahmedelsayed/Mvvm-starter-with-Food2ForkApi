@@ -1,7 +1,6 @@
 package com.khaled.food2fork.data.api
 
 import com.khaled.food2fork.data.model.SearchResponse
-import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
 
