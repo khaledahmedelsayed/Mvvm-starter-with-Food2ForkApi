@@ -20,14 +20,13 @@ class HomeFragment : BaseFragment() {
     override fun onViewReady() {
         setRecyclerView()
         setObservers()
-        viewModel.loadFoodList(1)
+        viewModel.loadRecipesList(1)
     }
 
     private fun setObservers() {
-        viewModel.responseList.observe(this, Observer {
+        viewModel.recipesList.observe(this, Observer {
             val foodListAdapter = (rvFoodList.adapter as FoodListAdapter)
             foodListAdapter.insertList(it)
-            foodListAdapter.notifyItemRangeChanged(foodListAdapter.itemCount, it.size)
         })
     }
     private fun setRecyclerView() {
@@ -38,7 +37,7 @@ class HomeFragment : BaseFragment() {
             adapter = FoodListAdapter()
             val scrollListener = object : EndlessRecyclerViewScrollListener(layoutManager) {
                 override fun onLoadMore(page: Int, totalItemsCount: Int) {
-                    viewModel.loadFoodList(page)
+                    viewModel.loadRecipesList(page)
                 }
             }
             addOnScrollListener(scrollListener)

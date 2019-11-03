@@ -1,7 +1,7 @@
 ext {
 
     daggerVersion = "2.21"
-    retrofitVersion = '2.4.0'
+    retrofitVersion = '2.6.0'
     ankoVersion = "0.10.8"
     rxjavaVersion = "2.2.4"
     rxandroidVersion = "2.1.0"

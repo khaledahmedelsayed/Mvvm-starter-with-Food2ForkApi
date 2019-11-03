@@ -17,6 +17,8 @@ class FoodListAdapter : RecyclerView.Adapter<FoodListAdapter.ViewHolder>() {
 
     fun insertList(recipesList: ArrayList<Recipe?>) {
         this.recipesList.addAll(recipesList)
+        this.notifyItemRangeChanged(this.itemCount, recipesList.size)
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
